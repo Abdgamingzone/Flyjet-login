@@ -158,57 +158,52 @@
 
 
     <!-- Optional Audio -->
-     <audio id="backgroundMusic" loop>
-        <source src="C:/Users/DELL/OneDrive/Desktop/My Game/Assets/Music/login_bg_music.mp3" type="audio/mpeg">
-    </audio> 
+    <audio id="backgroundMusic" src="./Assets/Audio/background-music.mp3" preload="auto"></audio>
+ 
 
 
 
 
    <script>
-    // Hardcoded valid user database
-    const validUsers = [
-        { userID: "Player12", password: "445566" },
-        { userID: "Player14", password: "445566" },
-    ];
+   // Hardcoded valid user database
+const validUsers = [
+    { userID: "Player12", password: "445566" },
+    { userID: "Player14", password: "445566" },
+];
 
-    const backgroundMusic = document.getElementById('backgroundMusic');
+const backgroundMusic = document.getElementById('backgroundMusic');
 
-    // Start the background music after user interaction
-    document.body.addEventListener('click', function () {
-        if (backgroundMusic && backgroundMusic.paused) {
-            backgroundMusic.play().catch((error) => {
-                console.error('Error playing audio:', error);
-            });
-        }
-    });
+// Start the background music after user interaction
+document.body.addEventListener('click', function () {
+    if (backgroundMusic && backgroundMusic.paused) {
+        backgroundMusic.play().catch((error) => {
+            console.error('Error playing audio:', error);
+        });
+    }
+});
 
-    // Handle the login form submission
-    document.getElementById('loginForm').addEventListener('submit', function (event) {
-        event.preventDefault();
+// Handle the login form submission
+document.getElementById('loginForm').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-        // Get user input values
-        const userID = document.getElementById('userID').value.trim();
-        const userPassword = document.getElementById('userPassword').value.trim();
-        const errorMessage = document.getElementById('errorMessage');
+    // Get user input values
+    const userID = document.getElementById('userID').value.trim();
+    const userPassword = document.getElementById('userPassword').value.trim();
+    const errorMessage = document.getElementById('errorMessage');
 
-        // Validate the credentials
-        const isValidUser = validUsers.some(user => user.userID === userID && user.password === userPassword);
+    // Validate the credentials
+    const isValidUser = validUsers.some(user => user.userID === userID && user.password === userPassword);
 
-        if (isValidUser) {
-            // Redirect to the game page if credentials are valid
-            errorMessage.style.display = "none"; // Hide error message
-            window.location.href = "C:/Users/DELL/OneDrive/Desktop/Project/game.html";
-        } else {
-            // Show the error message if credentials are invalid
-            errorMessage.style.display = "block";
-        }
-    });
-
-   
-
+    if (isValidUser) {
+        // Redirect to the game page if credentials are valid
+        errorMessage.style.display = "none"; // Hide error message
+        window.location.href = "./game.html"; // Use relative path
+    } else {
+        // Show the error message if credentials are invalid
+        errorMessage.style.display = "block";
+    }
+});
 </script>
-
 </body>
 </html>
 
